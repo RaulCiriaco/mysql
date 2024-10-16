@@ -1,0 +1,30 @@
+## DELETE **(ELIMINAR)**
+La operación *eliminar* se usa para borrar registros de la Base de Datos. Esto se realiza con la sentencia `DELETE`.
+
+**Debemos ser muy cuidadosos con esta operación, ya que una vez que los datos son eliminados, no pueden ser recuperados.**
+
+```SQL
+-- Eliminar el usuario por el ID --
+DELETE FROM usuario WHERE id_usuario=4;
+-- Eliminar el usuario por el ID especifico --
+DELETE FROM usuario WHERE email="luciohdz3012@gmail.com"
+```
+### Ejercicios
+- Eliminar usuarios cuyo email contenga 1 o más "5"
+```SQL
+DELETE FROM usuario WHERE email LIKE '%5%';
+
+```
+- Eliminar usuarios con contraseña que contenga letras Mayusculas usando Expresiones Regulares.
+```SQL
+DELETE FROM usuario WHERE password REGEXP '[A-Z]';
+```
+- Eliminar usuarios con contraseñas que contengan solo numeros.
+```SQL
+DELETE FROM usuario WHERE password REGEXP '^[0-9]+$';
+```
+- Eliminar usuarios con correos que no tengan dominio Gmail
+```SQL
+DELETE FROM usuario WHERE email NOT LIKE '%@gmail.com';
+
+```
