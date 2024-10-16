@@ -1,0 +1,44 @@
+### Ejercicios de Clase
+
+- Identifica los tipos de errores que pueden salir en esta tabla.
+```SQL
+- Repeticion
+- Contraseña mayor a solicitado
+- Email Repetido
+```
+- Inserta 4 registros nuevos en un solo insert.
+```SQL
+INSERT usuarios (email, password, usuario)
+VALUES
+('juan@example.com', 'contraseña123', 'Juan Pérez'),
+('maria@example.com', 'clave4567', 'María Gómez'),
+('pedro@example.com', 'mi_password', 'Pedro Martínez'),
+('ana@example.com', 'segura987', 'Ana López');
+```
+## READ **(LEER)**
+
+La operación *leer* es utilizada para consultar o recuperar datos para la base de datos. Esto no modifica los datos simplemente los extrae. En Mysql esta operación se realiza con la sentencia `SELECT`.
+```SQL
+-- Ejemplo de una consulta para todos los datos de una tabla -- 
+SELECT * FROM usuarios;
+-- Ejemplo de consulta para un registro en especifico a través del ID --
+SELECT * FROM usuarios WHERE id_Usuario = 1;
+-- Ejemplo de consulta para un registro con un email en especifico --
+SELECT * FROM usuarios WHERE email="ejemplo@mail.com";
+-- Ejemplo de consulta con solo los campos de email y de password --
+SELECT email,password FROM usuarios;
+-- Ejemplo de consulta con un condicional logico --
+SELECT * FROM usuarios WHERE LENGTH(password)>=9;
+```
+
+### Ejercicio:
+- Realiza una consulta que muestre solo el email, pero que coincida con una contraseña de más de 8 caracteres.
+```SQL
+SELECT email FROM usuario WHERE password LIKE'%______%';
+SELECT email FROM usuarios WHERE LENGTH(contraseña) > 8;
+```
+- Realiza otra consulta que muestre los ID pares.
+```SQL
+SELECT id FROM usuario WHERE id % 2 = 0;
+SELECT * FROM usuario WHERE (id_Usuario % 2) = 0;
+```
