@@ -1,0 +1,20 @@
+## UPDATE **(ACTUALIZAR)**
+
+La operación *actualizar* se utiliza para modificar registros existentes en la Base de Datos. Esto se hace con la sentencia `UPDATE`.
+
+```SQL
+-- Ejemplo para actualizar la contraseña por su ID --
+UPDATE usuario SET password = "a1b2c3d4e5" WHERE id_usuario=1;
+-- Ejemplo para actualizar email y password en especifico --
+UPDATE usuario SET password ="a1b2c3d4e5", email="luciohdz3012@gmail.com" WHERE id_usuario=1;
+```
+
+### Ejercicio:
+- Intenta actualizar los registros con valores que violen las restricciones(minimo 3).
+```SQL
+UPDATE usuario SET email = 'correoSinArroba.com' WHERE usuario = 1;
+UPDATE usuario SET password = 'short' WHERE usuario = 2;
+UPDATE usuario SET password = 'contraseñaDemasiadoLargaParaElCampo' WHERE usuario = 3;
+
+UPDATE usuario SET email = "ejemploduplica@gmail.com" WHERE usuario = 4;
+```
