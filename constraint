@@ -1,0 +1,38 @@
+CREATE TABLE Categoria(
+id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+nombre VARCHAR(100) NOT NULL
+);
+CREATE TABLE Producto (
+id_producto INT PRIMARY KEY AUTO_INCREMENT,
+id_categoria INT,
+codigo_barras VARCHAR(100) NOT NULL UNIQUE,
+nombre VARCHAR(255) NOT NULL,
+precio DECIMAL(10, 2) NOT NULL,
+FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+CREATE TABLE Cliente (
+id_cliente INT PRIMARY KEY AUTO_INCREMENT,
+nombre_cliente VARCHAR(255) NOT NULL,
+apellido1_cliente VARCHAR(255) NOT NULL,
+apellido2_cliente VARCHAR(255) NOT NULL,
+email VARCHAR(255)
+);
+CREATE TABLE Fecha(
+id_fecha INT PRIMARY KEY AUTO_INCREMENT,
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Venta (
+id_venta INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente INT,
+id_fecha INT,
+FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente) ON UPDATE CASCADE ON DELETE RESTRICT,
+FOREIGN KEY (id_fecha) REFERENCES fecha(id_fecha) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+CREATE TABLE Detalle_Venta (
+id_detalle INT PRIMARY KEY,
+id_venta INT,
+id_producto INT,
+cantidad INT NOT NULL CHECK (cantidad > 0),
+FOREIGN KEY (id_venta) REFERENCES venta(id_venta) ON UPDATE CASCADE ON DELETE RESTRICT,
+FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON UPDATE CASCADE ON DELETE RESTRICT
+);
