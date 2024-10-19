@@ -1,0 +1,28 @@
+CREATE TABLE Paciente (
+    ID_Paciente INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Fecha_Nacimiento DATE,
+    Sexo CHAR(1)
+);
+
+CREATE TABLE Medico (
+    ID_Medico INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    ID_Especialidad INT,
+    FOREIGN KEY (ID_Especialidad) REFERENCES Especialidad(ID_Especialidad)ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE Especialidad (
+    ID_Especialidad INT PRIMARY KEY,
+    Nombre VARCHAR(100)
+);
+
+CREATE TABLE Cita (
+    ID_Cita INT PRIMARY KEY,
+    ID_Paciente INT,
+    ID_Medico INT,
+    Fecha_Cita DATE,
+    Hora_Cita TIME,
+    FOREIGN KEY (ID_Paciente) REFERENCES Paciente(ID_Paciente)ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (ID_Medico) REFERENCES Medico(ID_Medico)ON UPDATE CASCADE ON DELETE RESTRICT
+);
