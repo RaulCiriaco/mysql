@@ -1,0 +1,36 @@
+-- BASE DE DATOS YA CREADA CON LAS TABLAS GUARDADAS --
+CREATE TABLE Productos(
+  idProducto INT PRIMARY KEY AUTO_INCREMENT,
+  nombre_producto VARCHAR(100) NOT NULL,
+  precio DECIMAL(10,2) NOT NULL,
+  stock INT
+	);
+
+CREATE TABLE Ventas(
+  id_venta INT PRIMARY KEY AUTO_INCREMENT,
+  id_producto INT,
+  fecha_venta DATE DEFAULT(24/09/2024),
+  cantidad INT NOT NULL CHECK (cantidad > 0),
+  FOREIGN KEY (id_producto) REFERENCES productos (idProducto) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+-- BASE DE DATOS MODIFICADA CON LAS ESPECIFICACIONES DEL DOCENTE DE ACUERDO CON EL EXAMÉN -- 
+SHOW TABLES;
+SELECT * FROM Productos;
+-- Incluimos la columna Descripcion a la tabla Productos --
+ALTER TABLE Productos ADD descripcion VARCHAR(100) NOT NULL;
+-- Mostramos que se añade correctamente --
+SELECT * FROM Productos;
+-- Eliminamos la columna STOCK de nuestra Tabla Productos
+ALTER TABLE Productos DROP COLUMN stock;
+-- Mostramos que se elimina correctamente --
+SELECT * FROM Productos;
+-- Mostramos nuestras tablas existentes --
+SHOW TABLES;
+-- Eliminamos la tabla Ventas de nuestra Base de Datos --
+DROP TABLE Ventas;
+-- Mostramos nuestras tablas existentes --
+SHOW TABLES;
+
+
+SELECT * FROM productos;
