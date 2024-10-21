@@ -1,0 +1,28 @@
+-- BASE DE DATOS YA CREADA CON LAS TABLAS GUARDADAS --
+CREATE TABLE Clientes(
+  idCliente INT PRIMARY KEY AUTO_INCREMENT,
+  nombreCl VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+	CHECK (email LIKE '@._')
+	);
+
+CREATE TABLE Pedidos(
+  idPedido INT PRIMARY KEY AUTO_INCREMENT,
+  id_Cliente INT,
+  fecha_pedido DATE NOT NULL,
+  
+  FOREIGN KEY (id_Cliente) REFERENCES clientes (idCliente) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+-- BASE DE DATOS MODIFICADA CON LAS ESPECIFICACIONES DEL DOCENTE -- 
+SHOW TABLES;
+SELECT * FROM Clientes;
+-- Incluimos la columna a la tabla Clientes y le añadimos una con el nombre "telefono" --
+ALTER TABLE Clientes ADD telefono DECIMAL(10) NOT NULL;
+SELECT * FROM Clientes;
+
+ALTER TABLE Clientes DROP COLUMN email;
+SELECT * FROM Clientes;
+
+DROP TABLE Pedidos;
+SHOW TABLES;
