@@ -1,0 +1,37 @@
+
+# PROBLEMARIO DE OPERACIONES CRUD #2 
+
+# CREACION DE BASE DE DATOS
+CREATE TABLE productos (
+    producto_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    categoria VARCHAR(50),
+    precio DECIMAL(10, 2),
+    stock INT,
+    fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE clientes (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE,
+    fecha_registro DATE
+);
+
+CREATE TABLE pedidos (
+    pedido_id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT,
+    fecha_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(10, 2),
+    FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE detalle_pedidos (
+    detalle_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT,
+    producto_id INT,
+    cantidad INT,
+    precio_unitario DECIMAL(10, 2),
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(pedido_id)ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (producto_id) REFERENCES productos(producto_id)ON UPDATE CASCADE ON DELETE RESTRICT
+);
