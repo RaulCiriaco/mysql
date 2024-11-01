@@ -1,0 +1,39 @@
+CREATE TABLE Producto (
+    ID_Producto INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Precio DECIMAL(10, 2),
+    ID_Categoria INT,
+    FOREIGN KEY (ID_Categoria) REFERENCES Categoria(ID_Categoria) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+CREATE TABLE Cliente (
+    ID_Cliente INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Email VARCHAR(255)
+);
+CREATE TABLE Venta (
+    ID_Venta INT PRIMARY KEY,
+    ID_Cliente INT,
+    Fecha_Venta DATE,
+    FOREIGN KEY (ID_Cliente) REFERENCES Cliente(ID_Cliente) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+CREATE TABLE Detalle_Venta (
+    ID_Detalle INT PRIMARY KEY,
+    ID_Venta INT,
+    ID_Producto INT,
+    Cantidad INT,
+    FOREIGN KEY (ID_Venta) REFERENCES Venta(ID_Venta)ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto)ON UPDATE CASCADE ON DELETE RESTRICT
+);
+CREATE TABLE Categoria (
+    ID_Categoria INT PRIMARY KEY,
+    Nombre VARCHAR(100)
+);
+CREATE TABLE ProductoCategoria(
+  ID_Categoria INT,
+  ID_Producto INT,
+  PRIMARY KEY(ID_Categoria , ID_Producto),
+  FOREIGN KEY (ID_Producto) REFERENCES Producto(ID_Producto)ON UPDATE CASCADE ON DELETE RESTRICT,
+  FOREIGN KEY (ID_Categoria) REFERENCES Categoria(ID_Categoria)ON UPDATE CASCADE ON DELETE RESTRICT
+  
+);
+
